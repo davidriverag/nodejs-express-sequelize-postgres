@@ -1,0 +1,42 @@
+npm init -y
+npm install express sequelize pg pg-hstore body-parser cors --save
+crear server.js
+node server.js 
+probar el link  http://localhost:8080/
+crear db.config.js
+
+crear /app/models/index.js
+
+agregar al server.js las dos lineas
+const db = require("./app/models");
+db.sequelize.sync();     
+o  para borrar la db 
+db.sequelize.sync({ force: true }).then(() => {
+  console.log("Drop and re-sync db.");
+}); 
+
+crear tutorial.model.js
+crear tutorial.controller.js   con todos sus funciones
+crear tutoria.routes.js
+agregar routes a server.js
+
+require("./app/routes/turorial.routes")(app);
+// set port, listen for requests
+const PORT = ...;
+app.listen(...);
+
+
+probar api con el curl
+
+http://localhost:8080/api/tutorials en el browser
+
+
+para agregar a la DB
+C:\Users\usuario\Desktop\nodejs-express-sequelize-postgres>.\CURL\curl --data "i
+d=3&title=Elaine&description=elaineexample.com" http://localhost:8080/api/tutorials
+
+para actualizar registro de la db
+curl -X PUT -d "title=updated title" -d "description=updated description" http://localhost:8080/api/tutorials/5
+
+para borrar registro de la db
+curl -X "DELETE" http://localhost:8080/apit/tutorials/9
